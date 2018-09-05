@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件</title>
+</head>
+<style>
+    .box{
+        width: 200px;
+        height: 200px;
+        border: 5px solid deeppink;
+        position: fixed;
+        top:0;
+        left:0;
+    }
+</style>
+<body>
+    <div class="box"></div>
+    <!--<input type="text" class="inut">-->
+</body>
+<script>
+    let box=document.querySelector(".box");
+    // let input=document.querySelector(".inut");
+    // box.onclick=function(){
+    //     this.innerText="hello !"
+    // }
+    // box.ondblclick=function(){
+    //     this.innerText="双击 !"
+    // }
+    // box.onmousemove=function(){
+    //     this.innerText="move !"
+    // }
+    // box.onmouseover=function(){
+    //     this.innerText="mouseover !"
+    // }
+    // box.onmouseout=function(){
+    //     this.innerText=""
+    // }
+    //
+    // box.onmousedown=function () {
+    //     this.innerText="鼠标按下";
+    // }
+    // box.onmouseup=function () {
+    //     this.innerText="鼠标抬起";
+    // }
+    // input.oninput=function () {
+    //     alert("oninput");
+    // }
+    // input.onchange=function () {
+    //     alert("改变值并失去焦点");
+    // }
+    // input.onfocus=function () {
+    //     alert("获取焦点");
+    // }
+
+
+//
+    /*事件对象属性   鼠标事件中常用的属性
+    * screenX 距离屏幕左上角X轴长度
+    * screenY 距离屏幕左上角Y轴长度
+    * clientX 距离浏览器左上角x轴的长度
+    * clientY 距离浏览器左上角Y轴的长度
+    * offsetX 距离事件源左上角X轴的长度
+    * offsetY 距离事件源左上角Y轴的长度
+    *
+    * */
+    // box.ondblclick=function(event){
+    //     event=event||window.event;
+    //     // console.log("screenX:", event.screenX);
+    //
+    // }
+    box.onmousedown=function (event) {
+        event=event||window.event;
+        let x0=event.clientX;
+        let y0=event.clientY;
+        let x2=this.offsetLeft;
+        let y2=this.offsetTop;
+        box.onmousemove=function (event2) {
+            event=event2||window.event;
+            let x1=event.clientX;
+            let y1=event.clientY;
+            x=x1-x0+x2;
+            y=y1-y0+y2;
+            this.style=`top:${y}px;;left:${x}px`;
+        }
+        box.onmouseup=function () {
+            box.onmousemove="";
+            box.onmouseup="";
+        }
+    }
+</script>
+</html>
